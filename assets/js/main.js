@@ -44,6 +44,7 @@ const BRL = new Intl.NumberFormat('pt-BR', { style:'currency', currency:'BRL', m
   let mx = innerWidth / 2, my = innerHeight / 2, rx = mx, ry = my;
 
   addEventListener('mousemove', e => {
+    if (!cur.classList.contains('is-live')) cur.classList.add('is-live');
     mx = e.clientX; my = e.clientY;
     dot.style.transform = `translate(${mx}px,${my}px) translate(-50%,-50%)`;
   }, { passive:true });

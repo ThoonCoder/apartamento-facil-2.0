@@ -72,6 +72,7 @@ img{ height:auto; }
 button,input,select,textarea{ font:inherit; color:inherit; }
 button{ background:none; border:0; cursor:pointer; }
 a{ color:inherit; text-decoration:none; }
+[hidden]{ display:none !important; }
 ::selection{ background:var(--gold); color:#0B0C10; }
 
 .wrap{ width:100%; max-width:var(--max); margin-inline:auto; padding-inline:var(--pad); }
@@ -112,7 +113,8 @@ a{ color:inherit; text-decoration:none; }
 @keyframes load{ from{ transform:translateX(-120%);} to{ transform:translateX(320%);} }
 
 /* ── Cursor ─────────────────────────────────────────────── */
-.cursor{ position:fixed; inset:0; z-index:9000; pointer-events:none; display:none; }
+.cursor{ position:fixed; inset:0; z-index:9000; pointer-events:none; display:none; opacity:0; transition:opacity .25s var(--ease); }
+.cursor.is-live{ opacity:1; }
 @media (hover:hover) and (pointer:fine){ .js .cursor{ display:block; } .js body{ cursor:none; } .js a,.js button,.js input,.js select,.js label{ cursor:none; } }
 .cursor__dot,.cursor__ring{
   position:absolute; top:0; left:0; border-radius:50%;
@@ -278,10 +280,11 @@ a{ color:inherit; text-decoration:none; }
 }
 .h2 em{
   font-style:italic;
-  background:linear-gradient(100deg,var(--gold-dp),var(--gold) 45%,var(--gold-lt));
+  background:linear-gradient(100deg,var(--gold-dp),var(--gold) 55%,var(--gold-dp));
   -webkit-background-clip:text; background-clip:text; color:transparent;
 }
 .h2--inv{ color:var(--tx-inv); }
+.h2--inv em{ background:linear-gradient(100deg,var(--gold),var(--gold-lt) 50%,var(--gold)); -webkit-background-clip:text; background-clip:text; }
 
 /* ── Seções ─────────────────────────────────────────────── */
 .sec{ position:relative; padding-block:var(--sec-y); }
@@ -707,6 +710,7 @@ select option{ background:var(--ink-2); color:var(--tx-inv); }
 .dock__b{ background:linear-gradient(120deg,var(--gold-lt),var(--gold)); color:#0B0C10; }
 
 /* ── Lightbox ───────────────────────────────────────────── */
+.lb[hidden]{ display:none !important; }
 .lb{
   position:fixed; inset:0; z-index:9500;
   background:rgba(6,7,10,.94); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
