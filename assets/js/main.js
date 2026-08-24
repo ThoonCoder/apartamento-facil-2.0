@@ -22,9 +22,20 @@ const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const BRL = new Intl.NumberFormat('pt-BR', { style:'currency', currency:'BRL', maximumFractionDigits:0 });
 
 /* ═══ 1. Preloader ═══════════════════════════════════════ */
-addEventListener('load', () => {
-  setTimeout(() => $('#preloader')?.classList.add('is-done'), 350);
-});
+(() => {
+  const el = $('#preloader');
+  if (!el) return;
+  const hide = () => el.classList.add('is-done');
+
+  if (document.readyState === 'loading')
+    document.addEventListener('DOMContentLoaded', () => setTimeout(hide, 250));
+  else
+    setTimeout(hide, 250);
+
+  // trava de segurança: nunca segura a tela além de 2,5s, mesmo se
+  // uma fonte externa ou o mapa do Google nunca responderem
+  setTimeout(hide, 2500);
+})();
 
 /* ═══ 2. Cursor customizado ══════════════════════════════ */
 (() => {

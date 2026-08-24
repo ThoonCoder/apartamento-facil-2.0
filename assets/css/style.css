@@ -91,8 +91,11 @@ a{ color:inherit; text-decoration:none; }
   background:var(--ink);
   display:grid; place-items:center;
   transition:opacity .6s var(--ease), visibility .6s;
+  animation:preloaderFailsafe .4s linear 3s forwards;
 }
-.preloader.is-done{ opacity:0; visibility:hidden; }
+.preloader.is-done{ opacity:0; visibility:hidden; pointer-events:none; }
+/* rede de segurança: some sozinho mesmo se o JS morrer */
+@keyframes preloaderFailsafe{ to{ opacity:0; visibility:hidden; } }
 .preloader__inner{ display:grid; gap:1.4rem; justify-items:center; }
 .preloader__mark{
   font-family:var(--f-disp); font-size:2.6rem; letter-spacing:.08em;
@@ -110,7 +113,7 @@ a{ color:inherit; text-decoration:none; }
 
 /* ── Cursor ─────────────────────────────────────────────── */
 .cursor{ position:fixed; inset:0; z-index:9000; pointer-events:none; display:none; }
-@media (hover:hover) and (pointer:fine){ .cursor{ display:block; } body{ cursor:none; } a,button,input,select,label{ cursor:none; } }
+@media (hover:hover) and (pointer:fine){ .js .cursor{ display:block; } .js body{ cursor:none; } .js a,.js button,.js input,.js select,.js label{ cursor:none; } }
 .cursor__dot,.cursor__ring{
   position:absolute; top:0; left:0; border-radius:50%;
   transform:translate(-50%,-50%); will-change:transform;
@@ -738,7 +741,7 @@ select option{ background:var(--ink-2); color:var(--tx-inv); }
 .lb__nav--next{ right:clamp(.6rem,3vw,2rem); }
 
 /* ── Reveal ─────────────────────────────────────────────── */
-.reveal{
+.js .reveal{
   opacity:0; transform:translateY(28px);
   transition:opacity .85s var(--ease), transform .85s var(--ease);
 }
@@ -751,7 +754,7 @@ select option{ background:var(--ink-2); color:var(--tx-inv); }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{ animation-duration:.01ms !important; animation-iteration-count:1 !important;
     transition-duration:.01ms !important; scroll-behavior:auto !important; }
-  .reveal{ opacity:1; transform:none; }
+  .js .reveal{ opacity:1; transform:none; }
   .hero__title .line > span{ transform:none; }
   .cursor{ display:none !important; } body{ cursor:auto !important; }
 }
