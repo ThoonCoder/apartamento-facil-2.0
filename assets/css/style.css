@@ -154,7 +154,18 @@ a{ color:inherit; text-decoration:none; }
   max-width:var(--max); margin-inline:auto; padding:1rem var(--pad);
   display:flex; align-items:center; gap:var(--gap);
 }
-.nav__brand{ display:flex; align-items:center; gap:.7rem; margin-right:auto; }
+.nav__brand{ display:flex; align-items:center; gap:.7rem; }
+.nav__by{
+  display:flex; align-items:center; gap:.65rem; margin-right:auto;
+  padding-left:clamp(.8rem,2vw,1.4rem); border-left:1px solid var(--line-dark);
+}
+.nav__by em{
+  font-style:normal; font-size:.6rem; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--tx-inv-soft); white-space:nowrap;
+}
+.nav__by img{ height:19px; width:auto; opacity:.92; }
+@media (max-width:760px){ .nav__by em{ display:none; } }
+@media (max-width:420px){ .nav__by{ display:none; } }
 .nav__mark{
   display:grid; place-items:center; width:40px; height:40px; flex:0 0 40px;
   font-family:var(--f-disp); font-size:1rem; letter-spacing:.03em;
@@ -393,6 +404,13 @@ a{ color:inherit; text-decoration:none; }
   color:var(--gold-lt); line-height:1; letter-spacing:-.02em;
 }
 .hero__stats span{ font-size:.74rem; letter-spacing:.12em; text-transform:uppercase; color:var(--tx-inv-soft); }
+
+.realiz{ display:flex; align-items:center; gap:.9rem; margin-top:clamp(1.2rem,3vh,2rem); }
+.realiz span{
+  font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; color:var(--tx-inv-soft);
+  white-space:nowrap;
+}
+.realiz img{ height:23px; width:auto; }
 
 .hero__scroll{
   position:absolute; bottom:1.4rem; left:50%; transform:translateX(-50%);
@@ -685,13 +703,18 @@ select option{ background:var(--ink-2); color:var(--tx-inv); }
 /* ── Footer ─────────────────────────────────────────────── */
 .foot{ background:var(--ink-2); border-top:1px solid var(--line-dark); padding-block:clamp(2.5rem,6vw,4rem) 6rem; }
 .foot__in{ display:grid; gap:1.8rem; }
-@media (min-width:820px){ .foot__in{ grid-template-columns:1.2fr 1fr; align-items:start; } }
+@media (min-width:820px){ .foot__in{ grid-template-columns:1.3fr 1fr auto; align-items:start; } }
 .foot__brand{ display:flex; gap:.9rem; align-items:flex-start; }
 .foot__brand p{ font-size:.88rem; color:var(--tx-inv-soft); line-height:1.6; }
 .foot__brand b{ color:var(--tx-inv); font-weight:600; }
 .foot__nav{ display:flex; flex-wrap:wrap; gap:1.1rem; }
 .foot__nav a{ font-size:.85rem; color:var(--tx-inv-soft); transition:color .3s; }
 .foot__nav a:hover{ color:var(--gold-lt); }
+.foot__by{ display:grid; gap:.5rem; justify-items:start; align-content:start; }
+.foot__by em{
+  font-style:normal; font-size:.63rem; letter-spacing:.2em; text-transform:uppercase; color:#5E646E;
+}
+.foot__by img{ height:28px; width:auto; opacity:.85; }
 .foot__legal{ grid-column:1/-1; font-size:.74rem; line-height:1.75; color:#5E646E; border-top:1px solid var(--line-dark); padding-top:1.4rem; }
 
 /* ── Dock mobile ────────────────────────────────────────── */
